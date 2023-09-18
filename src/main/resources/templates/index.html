@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+<h3 th:if="${username != null}" th:text="${'Current user: ' + username}"></h3>
+<h3 th:if="${username != null}" th:text="${'bio: ' + bio}"></h3>
+
+<h1>Welcome to Codefellowship, the best home for coders on the internet!</h1>
+
+<a th:if="!${username}" href="/login">Log In</a>
+<br>
+<a th:if="!${username}" href="/signup">Or Sign Up</a>
+<a th:if="${username}" href="/logout">Log Out</a>
+</body>
+</html>
