@@ -4,11 +4,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -21,8 +19,14 @@ public class ApplicationUser implements UserDetails {
     private String lastName;
     private String dateOfBirth;
     private String bio;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> posts;
 
     public ApplicationUser() {
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {

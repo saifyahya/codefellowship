@@ -32,14 +32,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signup").permitAll()
+                .antMatchers("/", "/login", "/signup","/profilestyle.css").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/", true)
+                .loginProcessingUrl("/login")  // from where the action of the login form
+                .defaultSuccessUrl("/myprofile", true)
                 .failureUrl("/login?error=true") // Update the failure URL
                 .and()
                 .logout()
