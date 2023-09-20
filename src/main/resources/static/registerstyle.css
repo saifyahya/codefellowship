@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign up</title>
-<!--    <link rel="stylesheet" type="text/css" href="/registerstyle.css">-->
-    <style>
-           body {
+   body {
             background-color: #f0f0f0;
             color: #333;
             font-family: Arial, sans-serif;
@@ -51,25 +44,3 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        </style>
-</head>
-<body>
-<a href="/login" method ="get"> Already have account</a>
-<form action="/signup" method="post">
-    <label for="firstName">First Name</label>
-    <input type="text" name="firstName" id="firstName">
-    <label for="lastName">Last Name</label>
-    <input type="text" name="lastName" id="lastName">
-    <label for="dateOfBirth">Date of Birth</label>
-    <input type="text" name="dateOfBirth" id="dateOfBirth">
-    <label for="bio">Bio</label>
-    <input type="text" name="bio" id="bio">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <input type="submit" value="Sign up">
-
-</form>
-</body>
-</html>

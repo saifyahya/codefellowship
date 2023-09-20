@@ -20,8 +20,6 @@ public class ApplicationUserController {
     @Autowired
     ApplicationUserRepository applicationUserRepository;
     @Autowired
-    UserDetailsServiceImpl userDetailsServiceImpl;
-    @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
     private HttpServletRequest request;
@@ -63,9 +61,21 @@ public class ApplicationUserController {
         if(p != null){   // check if the user is authenticated (logged in)
             String username = p.getName();
             ApplicationUser user= applicationUserRepository.findByUsername(username);
-
             m.addAttribute("username", username);
             m.addAttribute("bio", user.getBio());
+            m.addAttribute("posts",user.getPosts());
+        }
+        return "index.html";
+    }
+    @GetMapping("/myprofile")
+    public String getMyProfile(Principal p, Model m){
+        if(p != null){   // check if the user is authenticated (logged in)
+            String username = p.getName();
+            ApplicationUser user= applicationUserRepository.findByUsername(username);
+            m.addAttribute("user", user);
+
+            return "user-profile.html";
+
         }
         return "index.html";
     }

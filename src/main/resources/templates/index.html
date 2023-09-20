@@ -6,16 +6,36 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/profilestyle.css">
+
 </head>
 <body>
-<h3 th:if="${username != null}" th:text="${'Current user: ' + username}"></h3>
-<h3 th:if="${username != null}" th:text="${'bio: ' + bio}"></h3>
-
+<ul>
+    <a th:if="${username != null}" href="/myprofile">Profile</a>
+    <a href="/">Home</a>
+    <a th:if="!${username}" href="/login">Log In</a>
+    <a th:if="!${username}" href="/signup"> Sign Up</a>
+</ul>
 <h1>Welcome to Codefellowship, the best home for coders on the internet!</h1>
+<img th:if="!${username}" src="https://www.computersciencedegreehub.com/wp-content/uploads/2020/06/Is-Computer-Science-the-Same-as-Programming-2048x1365.jpg
+" style="    border-radius: 0; width:1000px; height:800px" />
+<h3 th:if="${username != null}" th:text="${'Current user: ' + username}"></h3>
+<h2  th:if="${username != null}">Posts</h2>
+<div  th:if="${username!=null}">
+    <div class="posts-container" th:each="post:${posts}">
+        <h3 th:text="${post.createdDate}"></h3>
+        <p th:text="${post.body}"></p>
+    </div>
+</div>
+<form th:if="${username != null}" action="/add-post" method="post">
+    <fieldset>
+        <legend>Create new post</legend>
+    <label for="body">body</label>
+    <input type="text" name="body" id="body">
+    <input type="submit" value="Post">
+    </fieldset>
+</form>
 
-<a th:if="!${username}" href="/login">Log In</a>
-<br>
-<a th:if="!${username}" href="/signup">Or Sign Up</a>
 <a th:if="${username}" href="/logout">Log Out</a>
 </body>
 </html>
