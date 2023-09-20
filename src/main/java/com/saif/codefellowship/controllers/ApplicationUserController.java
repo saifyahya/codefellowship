@@ -14,6 +14,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class ApplicationUserController {
@@ -39,11 +41,19 @@ public class ApplicationUserController {
             System.out.println("Username already used");
             return new RedirectView("/signup");
         }
+        try{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dateOfBirth, formatter);
         String encryptedPassword = passwordEncoder.encode(password);
-        ApplicationUser newUser = new ApplicationUser(username,encryptedPassword,firstName,lastName,dateOfBirth,bio);
+        ApplicationUser newUser = new ApplicationUser(username,encryptedPassword,firstName,lastName,localDate,bio);
         applicationUserRepository.save(newUser);
         authWithHttpServletRequest(username, password);     //login the user immediately after signup
         return new RedirectView("/");
+    }   catch (Exception e) {
+        // Handle parsing or other exceptions
+        System.err.println("Error during signup: " + e.getMessage());
+        return new RedirectView("/signup"); // Redirect back to signup page on error
+    }
     }
     public void authWithHttpServletRequest(String username, String password){
         try {
