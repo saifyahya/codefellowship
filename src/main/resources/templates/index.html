@@ -15,27 +15,28 @@
     <a href="/">Home</a>
     <a th:if="!${username}" href="/login">Log In</a>
     <a th:if="!${username}" href="/signup"> Sign Up</a>
+    <a th:if="${username}" href="/logout">Log Out</a>
 </ul>
 <h1>Welcome to Codefellowship, the best home for coders on the internet!</h1>
 <img th:if="!${username}" src="https://www.computersciencedegreehub.com/wp-content/uploads/2020/06/Is-Computer-Science-the-Same-as-Programming-2048x1365.jpg
 " style="    border-radius: 0; width:1000px; height:800px" />
-<h3 th:if="${username != null}" th:text="${'Current user: ' + username}"></h3>
+<h3 th:if="${username != null}" th:text="${'Current User: ' + username}"></h3>
+    <h4 th:if="${username != null}">All Users</h4>
+    <div class="other-users"  th:each="singleUser:${allUsers}">
+    <a th:href="'/profile/'+ ${singleUser.id}" th:text="${singleUser.username}" style="display: block;"></a><br>
+</div>
+<form  th:if="${username != null}" action="/add-post" method="post">
+    <fieldset class="add-post-form">
+        <legend>Create new post</legend>
+        <label for="body">body</label>
+        <input type="text" name="body" id="body">
+        <input type="submit" value="Post">
+    </fieldset>
+</form>
 <h2  th:if="${username != null}">Posts</h2>
-<div  th:if="${username!=null}">
-    <div class="posts-container" th:each="post:${posts}">
+    <div th:if="${username!=null}" class="posts-container" th:each="post:${posts}">
         <h3 th:text="${post.createdDate}"></h3>
         <p th:text="${post.body}"></p>
     </div>
-</div>
-<form th:if="${username != null}" action="/add-post" method="post">
-    <fieldset>
-        <legend>Create new post</legend>
-    <label for="body">body</label>
-    <input type="text" name="body" id="body">
-    <input type="submit" value="Post">
-    </fieldset>
-</form>
-
-<a th:if="${username}" href="/logout">Log Out</a>
 </body>
 </html>

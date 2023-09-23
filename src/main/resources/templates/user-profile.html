@@ -7,6 +7,7 @@
 <body>
 <ul>
     <a href="/">Home</a>
+    <a href="/logout">Log out</a>
 </ul>
 <h1>My Profile</h1>
 <div class="user-details">
@@ -16,12 +17,18 @@
     <h3> Date of Birth:  <span th:text="${user.dateOfBirth}"></span></h3>
 <h3>bio:  <span th:text="${user.bio}"></span></h3>
 </div>
-
+<form th:if="${user.username != null}" action="/add-post" method="post">
+    <fieldset class="add-post-form">
+        <legend>Create new post</legend>
+        <label for="body">body</label>
+        <input type="text" name="body" id="body">
+        <input type="submit" value="Post">
+    </fieldset>
+</form>
 <h2>Posts</h2>
 <div class="posts-container" th:each="post:${user.posts}">
     <h3 th:text="${post.createdDate}"></h3>
     <p th:text="${post.body}"></p>
 </div>
-<a href="/logout">Log out</a>
 </body>
 </html>
