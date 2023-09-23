@@ -17,7 +17,8 @@ h1 {
 a {
     text-decoration: none;
     color: #3498db;
-    padding: 5px;
+    padding: 10px;
+
 }
 
 .user-details {
@@ -27,10 +28,11 @@ a {
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #888;
+    width:300px;
 }
 
 img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
     border-radius: 50%;
     display: block;
@@ -50,4 +52,22 @@ h3 {
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #888;
+        width:400px;
 }
+ .other-users {
+     width: 150px;
+     text-align: center;
+     float: right;
+     margin-right: 20px;
+         background-color: #fff;
+
+ }
+    h4{
+    text-align: right;
+     margin-right:40px
+    }
+
+.add-post-form{
+width:400px;
+}
+

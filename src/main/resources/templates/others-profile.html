@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+  <link rel="stylesheet" type="text/css" href="/profilestyle.css">
+
+</head>
+<body>
+<ul>
+  <a href="/">Home</a>
+  <a href="/logout">Log out</a>
+</ul>
+<h1><span th:text="${user.username}"></span> Profile</h1>
+<div class="user-details">
+  <img src="https://th.bing.com/th/id/OIP.EQOopZuYossi0Sd8i_G3bQAAAA?w=282&h=176&c=7&r=0&o=5&dpr=1.3&pid=1.7">
+  <h3 th:text="${user.firstName} + ' ' + ${user.lastName}"></h3>
+  <h3> Username:  <span th:text="${user.username}"></span></h3>
+  <h3> Date of Birth:  <span th:text="${user.dateOfBirth}"></span></h3>
+  <h3>bio:  <span th:text="${user.bio}"></span></h3>
+</div>
+
+<h2>Posts</h2>
+<div class="posts-container" th:each="post:${user.posts}">
+  <h3 th:text="${post.createdDate}"></h3>
+  <p th:text="${post.body}"></p>
+</div>
+</body>
+</html>
