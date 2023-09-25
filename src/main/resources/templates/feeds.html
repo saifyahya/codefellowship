@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feeds</title>
+</head>
+<body>
+<h1>Feeds</h1>
+<div th:each="posts, userIndex : ${postsByFollowedUsers}">
+    <!-- Get the user ID for the current user's posts -->
+    <p>User ID: <span th:text="${userId}"></span></p>
+    <ul>
+        <!-- Iterate through the posts for the current user -->
+        <li th:each="post : ${posts}">
+            <!-- Create a clickable link with the post content -->
+            <a th:href="'/profile/' + ${userId}" th:text="${post.body}"></a>
+        </li>
+    </ul>
+</div>
+</body>
+
+</html>
