@@ -29,6 +29,17 @@
 <div class="posts-container" th:each="post:${user.posts}">
     <h3 th:text="${post.createdDate}"></h3>
     <p th:text="${post.body}"></p>
+    <h3 style="color:green;">Comments</h3>
+    <div th:each="comment:${post.comments}">
+        <p th:text="${comment.text}"> <form th:action="'/delete-comment/'+${comment.id}+'/'+${post.id}" method="post"><input type="submit" value="Remove Comment"></form></p>
+    </div>
+    <form th:action="'/add-comment/'+${post.id}" method="post">
+        <label for="text">add comment</label>
+        <input type="text" name="text" id="text">
+        <input type="submit" value="Comment">
+    </form>
 </div>
+<div th:replace="/fragments/footer :: footer-frag"></div>
+
 </body>
 </html>

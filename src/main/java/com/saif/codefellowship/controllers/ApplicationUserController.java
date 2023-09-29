@@ -2,6 +2,7 @@ package com.saif.codefellowship.controllers;
 
 import com.saif.codefellowship.models.ApplicationUser;
 import com.saif.codefellowship.repositories.ApplicationUserRepository;
+import com.saif.codefellowship.repositories.FollowerRepository;
 import com.saif.codefellowship.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,6 +33,8 @@ public class ApplicationUserController {
     PasswordEncoder passwordEncoder;
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    FollowerRepository  followerRepository;
 
     @GetMapping("/login")
     public String getLoginPage(){
@@ -104,15 +107,26 @@ public class ApplicationUserController {
         return "index.html";
     }
     @GetMapping("/profile/{id}")
-    public String getOthersProfile(@PathVariable Long id,  Model m){
-            ApplicationUser user= applicationUserRepository.findById(id).get();
+    public String getOthersProfile(Principal p, @PathVariable Long id,  Model m){
+        String myUserName = p.getName();
+        ApplicationUser currentUser= applicationUserRepository.findByUsername(myUserName);
+            if(id==currentUser.getId()){  // make the user go tho his user-profile page
+                m.addAttribute("user", currentUser);
+                return "user-profile.html";}
+        ApplicationUser user= applicationUserRepository.findById(id).get();
             if(user==null){
                 throw new RuntimeException("User Not Found");
             }
             m.addAttribute("user",user);
+        boolean isAlreadyFollowing = followerRepository.existsByFollowerAndFollowed(currentUser, user);
+if(isAlreadyFollowing)
+    m.addAttribute("unfollow",true);
+else
+    m.addAttribute("unfollow",false);
 
-            return "others-profile.html";
+        return "others-profile.html";
 
     }
+
 
 }

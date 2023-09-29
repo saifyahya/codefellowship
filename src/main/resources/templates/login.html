@@ -53,6 +53,34 @@
             border-radius: 5px;
             cursor: pointer;
         }
+         /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+                justify-content: space-around;
+    display: flex;
+    height: 50px;
+    margin-top: 400px;
+        }
+
+        /* Style for the contact link */
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Style for the link on hover */
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for <p> elements in the footer */
+        footer p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -65,5 +93,6 @@
     <input type="submit" value="Login">
 
 </form>
+<div th:replace="/fragments/footer :: footer-frag"></div>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+        /* Body Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+ /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+                justify-content: space-around;
+    display: flex;
+    height: 50px;
+    margin-top: 400px;
+        }
+
+        /* Style for the contact link */
+        footer a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        /* Style for the link on hover */
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for <p> elements in the footer */
+        footer p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+<header>
+  <!-- Your header content here -->
+</header>
+
+<!-- Main Content Section -->
+<main>
+  <!-- Your webpage content here -->
+</main>
+
+<!-- Footer Section -->
+<footer th:fragment="footer-frag">
+  <p>&copy; Copyrights saifyahya</p>
+  <div>
+  <p>Contact me</p>
+  <a href="mailto:saifbarakat991@gmail.com">Email</a>
+  </div>
+</footer>
+</body>
+</html>

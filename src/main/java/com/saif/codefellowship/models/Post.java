@@ -13,6 +13,8 @@ public class Post {
     private LocalDate createdDate;
     @ManyToOne()
     private ApplicationUser user;
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private List<Comments> comments;
 
     public Post() {
     }
@@ -37,5 +39,13 @@ public class Post {
         this.body = body;
         this.createdDate = createdDate;
         this.user = user;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }
